@@ -1,0 +1,32 @@
+name: 30-day business experiment
+on:
+  schedule:
+    - cron: '23 14 * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  daily:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Generate site and daily work plan
+        env:
+          START_DATE: '2026-11-11'
+          PRODUCT_PRICE: '7'
+          CHECKOUT_URL: ${{ vars.CHECKOUT_URL }}
+          SITE_URL: ${{ vars.SITE_URL }}
+        run: python agent.py
+      - name: Commit generated files
+        run: |
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          git add data docs products
+          if ! git diff --cached --quiet; then
+            git commit -m "Daily business experiment update"
+            git push
+          fi

@@ -1,0 +1,7 @@
+DAY 1 / 30 — TASK LIST
+1. Review one product for accuracy and usefulness.
+2. Validate demand with real people; avoid invented research claims.
+3. Share one genuinely useful post only through an authorized channel.
+4. Check storefront analytics and actual payment provider sales.
+5. Record traffic, costs, and sales in data/metrics.csv.
+6. Never claim a sale unless verified by your payment provider.
