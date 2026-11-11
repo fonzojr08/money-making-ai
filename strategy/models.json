@@ -1,0 +1,72 @@
+{
+  "evidence_checked_on": "2026-11-11",
+  "assumptions_disclaimer": "0-5 numbers are human judgments for a $0-upfront, mostly automated 30-day pilot, not measured market demand or a revenue forecast.",
+  "models": [
+    {
+      "id": "digital_products",
+      "name": "Digital products",
+      "assumptions": {
+        "upfront_cost": 5,
+        "automation_fit": 5,
+        "launch_speed": 4,
+        "maintenance_ease": 4
+      },
+      "main_risk": "No buyers or audience yet",
+      "first_test": "Ask five potential buyers about a specific problem, build one useful original template, and get genuine buyer feedback before scaling.",
+      "pricing_sources": [
+        {
+          "label": "Payhip free plan: $0/month + 5% platform fee, payment processing extra",
+          "url": "https://payhip.com/pricing"
+        },
+        {
+          "label": "GitHub Actions public repository standard runners are free",
+          "url": "https://docs.github.com/en/billing/concepts/product-billing/github-actions"
+        }
+      ]
+    },
+    {
+      "id": "ai_services",
+      "name": "AI-assisted services",
+      "assumptions": {
+        "upfront_cost": 5,
+        "automation_fit": 2,
+        "launch_speed": 3,
+        "maintenance_ease": 2
+      },
+      "main_risk": "Client acquisition, custom revisions, human communication",
+      "first_test": "Draft one narrow service offer and two real demo samples, then seek three permission-based consultations.",
+      "pricing_sources": [
+        {
+          "label": "Upwork Basic: free monthly plan; freelancer service fees",
+          "url": "https://www.upwork.com/pricing/freelancer"
+        },
+        {
+          "label": "Stripe Payment Links and card fees",
+          "url": "https://stripe.com/pricing"
+        }
+      ]
+    },
+    {
+      "id": "software_saas",
+      "name": "Software subscriptions (SaaS)",
+      "assumptions": {
+        "upfront_cost": 3,
+        "automation_fit": 4,
+        "launch_speed": 1,
+        "maintenance_ease": 1
+      },
+      "main_risk": "Security, hosting, development, customer support and recurring use",
+      "first_test": "Interview five prospective users with a recurring problem before developing a minimum viable product or activating recurring billing.",
+      "pricing_sources": [
+        {
+          "label": "Stripe payment processing and Payment Links pricing",
+          "url": "https://stripe.com/pricing"
+        },
+        {
+          "label": "GitHub Actions usage rules and billing",
+          "url": "https://docs.github.com/en/billing/concepts/product-billing/github-actions"
+        }
+      ]
+    }
+  ]
+}
