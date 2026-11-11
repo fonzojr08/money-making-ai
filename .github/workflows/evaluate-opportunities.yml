@@ -1,0 +1,52 @@
+name: Evaluate three business models (30-day, no paid APIs)
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "37 15 * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  evaluate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Test evaluator
+        run: python -m unittest discover -s tests -p 'test_opportunity_evaluator.py'
+
+      - name: Evaluate only in the initial 30-day window
+        run: |
+          python - <<'PY'
+          from datetime import date, datetime, timezone
+          from strategy.evaluate import main
+
+          today = datetime.now(timezone.utc).date()
+          if date(2026, 11, 11) <= today <= date(2026, 12, 10):
+              main()
+          else:
+              print("Outside the 30-day experiment. No new report generated.")
+          PY
+
+      - name: Commit report only when changed
+        run: |
+          if [ ! -f data/opportunity_decision.json ]; then
+            echo "No report to commit"
+            exit 0
+          fi
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          git add data/opportunity_decision.json data/opportunity_report.md
+          if ! git diff --cached --quiet; then
+            git commit -m "Update 30-day opportunity evaluation"
+            git push
+          fi
